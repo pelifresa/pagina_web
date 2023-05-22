@@ -1,0 +1,104 @@
+// Variables a reutilizar, primero las relaccionadas con el menu
+$color-letras-header: #31241e;
+$fuente: "Courier New",
+Courier,
+monospace;
+$color-fondo-menu: transparent;
+
+body {
+    background-color: #f6f4f3;
+}
+
+// COLOCACIÓN DEL MENU EN LÍNEA, QUITANDOLE LA DECORACIÓN A LAS ETIQUETA "a" Y PONIENDOLE DECORACIÓN "HOVER" AL PASAR EL RATÓN POR ENCIMA DE LOS ELEMENTOS, PARA ELLO, REALICÉ UNA ANIDACIÓN DE SASS EN LA QUE INCLUYO DENTRO DEL ELEMENTO PADRE LOS ELEMENTOS HIJOS
+nav {
+    ul {
+        justify-content: end;
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background: $color-fondo-menu;
+    }
+
+    li a {
+        color: $color-letras-header;
+        display: block;
+        text-decoration: none;
+        padding: 0.5em 1em;
+        font-family: $fuente;
+    }
+
+    li a:hover {
+        color: #86654b;
+        font-weight: bold;
+        font-family: $fuente;
+    }
+
+    .logo {
+        background-position: -29px -40px;
+        width: 298px;
+        height: 73px;
+    }
+
+}
+
+// AQUÍ SELECCIONO TODO EL CONTENIDO QUE QUIERO QUE SE VEA EN LA MISMA LÍNEA PERO OCUPANDO DIFERENTES ESPACIOS Y CON FLEXBOX, LO MODIFICO PARA COLOCARLO A LO LARGO DEL ANCHO Y ALTO
+
+// CAJA PADRE
+.flex-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-content: flex-start;
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+}
+
+// CAJA HIJOS
+.caja {
+    font-family: $fuente;
+    margin: 50px;
+}
+
+// EN VEZ DE METER LAS IMAGENES UNA POR UNA, REALICÉ UN SPRITE EN PNG QUE CONTUVIESE TODAS LAS IMÁGENES PARA LUEGO IR RECOGIENDO SU POSICIÓN Y MOSTRANDOLAS EN PANTALLA. ESTO HACE QUE EL CÓDIGO SEA MAS LIMPIO Y MUCHO MENOS PESADO / (programas que ayudan a buscar la posición del objeto pueden ser por ejemplo http://www.spritecow.com/
+
+.sprite {
+    background: url("../prueba_maquetacion/images/sprite.png") no-repeat left top;
+}
+
+.imagen1 {
+    background-position: center -210px;
+    width: 100%;
+    height: 274px;
+    margin-top: 47px;
+}
+
+// MIXINS DE UNA ESTRUCTURA PRINCIPAL QUE LE DA EL ANCHO Y ALTO A TODAS LAS IMAGENES Y EN LA QUE SOLO CAMBIA LA POSICIÓN DEL SPRITE EN LA QUE SE ENCUENTRA EL ELEMENTO PARA QUE APAREZCA
+
+@mixin imagenes($position: -33px -556px) {
+    background-position: $position;
+    width: 248px;
+    height: 251px;
+}
+
+.imagen2 {
+    @include imagenes($position: -33px -556px);
+}
+
+.imagen3 {
+    @include imagenes($position: -337px -556px);
+}
+
+.imagen4 {
+    @include imagenes($position: -638px -556px);
+}
+
+button {
+    color: white;
+    background-color: #d1c8c1;
+    border: none;
+    padding: 30px;
+    font-family: $fuente;
+
+}
